@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>center</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 12px;
+        }
+        .box div {
+            padding: 30px;
+            background-color: red;
+            color: #fff;
+        }
+        .box1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box2 {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .box2 div {
+            display: inline-block;
+        }
+        .box3 {
+            position: relative;
+        }
+        .box3 div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .box4 {
+            display: grid;
+        }
+        .box4 div {
+            align-self: center;
+            justify-self: center;
+        }
+    </style>
+<body>
+    <div class="box box1">
+        <div>box1</div>
+    </div>
+    <div class="box box2">
+        <div>box2</div>
+    </div>
+    <div class="box box3">
+        <div>box3</div>
+    </div>
+    <div class="box box4">
+        <div>box4</div>
+    </div>
+</body>
+</html>
