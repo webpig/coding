@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var name = 'Jack'
+
+    const arrowFunc = () => {
+        // console.log(arguments)
+        console.log(this.name)
+    }
+
+    function normalFunc(a, a) {
+        // console.log(arguments)
+        console.log(this.name)
+
+        const arrowFunc = () => {
+            // console.log(arguments)
+        }
+
+        arrowFunc()
+    }
+
+    // 箭头函数没有arguments
+    arrowFunc(1)
+    normalFunc(1)
+
+    // 箭头函数没有prototype
+    console.log(arrowFunc.prototype)
+    console.log(normalFunc.prototype)
+
+    // 箭头函数没有this
+    arrowFunc()
+    normalFunc()
+
+    // call/apply/bind改变不了this指向
+    arrowFunc.call({name: 'Bob'})
+    arrowFunc.apply({name: 'Bob'})
+    arrowFunc.bind({name: 'Bob'})()
+
+    normalFunc.call({name: 'Bob'})
+    normalFunc.apply({name: 'Bob'})
+    normalFunc.bind({name: 'Bob'})()
+
+    //箭头函数不能new，也就是不能用作构造函数
+    // new arrowFunc()
+    new normalFunc()
+</script>
+</body>
+</html>
