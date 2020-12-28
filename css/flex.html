@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex</title>
+    <style>
+        .flex {
+            display: flex;
+            width: 600px;
+            height: 300px;
+        }
+        .flex-item {
+            height: 100px;
+            /*width: 300px;*/
+        }
+        .flex-grow .flex-item:nth-of-type(1) {
+            flex-grow: 1;
+            background: red;
+        }
+        .flex-grow .flex-item:nth-of-type(2) {
+            flex-grow: 2;
+            background: green;
+        }
+        .flex-grow .flex-item:nth-of-type(3) {
+            flex-grow: 3;
+            background: blue;
+        }
+        .flex-shrink .flex-item {
+            width: 300px;
+        }
+        .flex-shrink .flex-item:nth-of-type(1) {
+            flex-shrink: 1;
+            background: red;
+        }
+        .flex-shrink .flex-item:nth-of-type(2) {
+            flex-shrink: 2;
+            background: green;
+        }
+        .flex-shrink .flex-item:nth-of-type(3) {
+            flex-shrink: 3;
+            background: blue;
+        }
+        .flex-basis .flex-item:nth-of-type(1) {
+            flex-basis: 400px;
+            background: red;
+        }
+        .flex-basis .flex-item:nth-of-type(2) {
+            flex-basis: 200px;
+            background: green;
+        }
+        .flex-basis .flex-item:nth-of-type(3) {
+            flex-basis: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="flex flex-grow">
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+</div>
+<div class="flex flex-shrink">
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+</div>
+<div class="flex flex-basis">
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+</div>
+</body>
+</html>
