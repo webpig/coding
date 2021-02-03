@@ -34,4 +34,6 @@ console.log('[JS] Lesson_01.mp4'.replace(/\B/g, '#'))
 console.log('hello'.replace(/(?=l)/g, '#'))
 console.log('hello'.replace(/(?!l)/g, '#'))
 
-console.log('12345678'.replace(/(?=(\d{3})+$)/g, ','))
+console.log('12345678 123456789'.replace(/(?!\b)(?=(\d{3})+\b)/g, ','))
+
+console.log('188888888.00'.replace(/(\B)(?=(\d{3})+\b)/g, ','))
