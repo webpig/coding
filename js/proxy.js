@@ -84,11 +84,23 @@ const handler = {
     } else {
       return Reflect.deleteProperty(target, key)
     }
+  },
+  getPrototypeOf(target) {
+    return Reflect.getPrototypeOf(target)
+  },
+  setPrototypeOf(target, proto) {
+    return Reflect.setPrototypeOf(target, proto)
+  },
+  isExtensible(target) {
+    return Reflect.isExtensible(target)
+  },
+  preventExtensions(target) {
+    return Reflect.preventExtensions(target)
   }
 }
 
 const proxy = new Proxy(target, handler)
-
+// console.log(proxy)
 // proxy.name = 'target1'
 // console.log(proxy.name)
 
@@ -104,14 +116,43 @@ const proxy = new Proxy(target, handler)
 //   configurable: true
 // })
 
-console.log('value' in proxy)
+// console.log('value' in proxy)
+//
+// let result1 = delete proxy.value
+// console.log(result1)
+//
+// console.log('value' in proxy)
+//
+// let result2 = delete proxy.name
+// console.log(result2)
+//
+// console.log('name' in proxy)
+//
+// let targetProto = Object.getPrototypeOf(target)
+// let proxyProto = Object.getPrototypeOf(proxy)
+//
+// console.log(targetProto === Object.prototype)
+// console.log(proxyProto === Object.prototype)
+// console.log(proxyProto)
+//
+// Object.setPrototypeOf(target, {})
+// Object.setPrototypeOf(proxy, {})
 
-let result1 = delete proxy.value
-console.log(result1)
+// console.log(Object.getPrototypeOf(1) === Number.prototype)
+// console.log(Reflect.getPrototypeOf(1))
 
-console.log('value' in proxy)
+let target1 = {}
+let result1 = Object.setPrototypeOf(target1, {})
+console.log(result1 === target1)
 
-let result2 = delete proxy.name
-console.log(result2)
+let target2 = {}
+let result2 = Reflect.setPrototypeOf(target2, {})
+console.log(result2, result2 === target2)
 
-console.log('name' in proxy)
+console.log(Object.isExtensible(target))
+console.log(Object.isExtensible(proxy))
+
+Object.preventExtensions(proxy)
+
+console.log(Object.isExtensible(target))
+console.log(Object.isExtensible(proxy))

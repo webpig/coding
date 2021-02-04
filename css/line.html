@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #infinity {
+            position: relative;
+            width: 40px;
+            height: 100px;
+            box-sizing: border-box;
+        }
+        #infinity:before,
+        #infinity:after {
+            position: absolute;
+            content: "";
+            width: 20px;
+            height: 50px;
+        }
+        #infinity:before {
+            right: 0;
+            top: 0;
+            border-top-left-radius: 20px;
+            border-top: 2px solid #999;
+            border-left: 2px solid #999;
+            /*box-sizing: border-box;*/
+        }
+        #infinity:after {
+            left: 0;
+            bottom: 0;
+            border-bottom-right-radius: 20px;
+            border-bottom: 2px solid #999;
+            border-right: 2px solid #999;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="infinity"></div>
+</body>
+</html>
