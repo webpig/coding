@@ -156,3 +156,108 @@ Object.preventExtensions(proxy)
 
 console.log(Object.isExtensible(target))
 console.log(Object.isExtensible(proxy))
+
+function sum(...values) {
+  return values.reduce((previous, current) => previous + current, 0)
+}
+
+const sumProxy = new Proxy(sum, {
+  apply(target, thisArg, args) {
+    args.forEach(arg => {
+      if (typeof arg !== 'number') {
+        throw new TypeError('All arguments must be numbers.')
+      }
+    })
+  },
+  construct(target, args, newTarget) {
+    throw new TypeError(`This function can't be called with new.`)
+  }
+})
+
+// console.log(sumProxy(1, 2, 3, 4))
+// console.log(sumProxy(1, '2', 3, 4))
+// let result = new sumProxy()
+
+
+// function Numbers(...values) {
+//   this.values = values
+// }
+//
+// const NumbersProxy = new Proxy(Numbers, {
+//   apply(target, thisArg, args) {
+//     throw new TypeError('This function must be called with new.')
+//   },
+//   construct(target, args, newTarget) {
+//     args.forEach(arg => {
+//       if (typeof arg !== 'number') {
+//         throw new TypeError('All arguments must be numbers.')
+//       }
+//     })
+//
+//     return Reflect.construct(target, args, newTarget)
+//   }
+// })
+//
+// const instance = new NumbersProxy(1, 2, 3, 4)
+// console.log(instance.values)
+//
+// NumbersProxy(1, 2, 3, 4)
+
+// function Numbers(...values) {
+//   if (typeof new.target === 'undefined') {
+//     throw new TypeError('This function must be called with new.')
+//   }
+//
+//   this.values = values
+// }
+//
+// const NumbersProxy = new Proxy(Numbers,{
+//   apply(target, thisArg, argArray) {
+//     return Reflect.construct(target, argArray)
+//   }
+// })
+
+// const instance = new Numbers(1, 2)
+// console.log(instance.values)
+//
+// NumbersProxy(1, 2)
+
+class AbstractNumbers {
+  constructor(...values) {
+    if (new.target === AbstractNumbers) {
+      throw new TypeError('This function must be inherited from.')
+    }
+
+    this.values = values
+  }
+}
+
+const AbstractNumbersProxy = new Proxy(AbstractNumbers, {
+  construct(target, argArray, newTarget) {
+    return Reflect.construct(target, argArray, function() {})
+  }
+})
+
+class Numbers extends AbstractNumbers {}
+
+const instance = new Numbers(1, 2)
+console.log(instance.values)
+
+new AbstractNumbersProxy(1, 2)
+
+class Person {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+const PersonProxy = new Proxy(Person, {
+  apply(target, thisArgs, args) {
+    return new target(...args)
+  }
+})
+
+const me = PersonProxy('Nicholas')
+console.log(me.name)
+console.log(me instanceof Person)
+console.log(me instanceof PersonProxy)
